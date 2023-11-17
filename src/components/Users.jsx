@@ -9,6 +9,7 @@ import {
   styled,
   Button,
 } from "@mui/material";
+import { useState } from "react";
 
 const Component = styled(Box)`
   width: 80%;
@@ -29,7 +30,25 @@ const Component = styled(Box)`
   }
 `;
 
+const defaultObj = [
+  {
+    id: 101,
+    name: "Yashi",
+    email: "y@gmail.com",
+    phone: +919369950857,
+    salary: 1500000,
+    age: 21,
+  },
+];
+
 const Users = () => {
+  const [users, setUsers] = useState(defaultObj);
+
+  const removeEntry = (id) => {
+    const updatedUsers = users.filter((user) => user.id !== id);
+    setUsers(updatedUsers);
+  };
+
   return (
     <Component>
       <Typography variant="h4">Users</Typography>
@@ -47,19 +66,25 @@ const Users = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell>101</TableCell>
-              <TableCell>Anmol</TableCell>
-              <TableCell>anmol@gmail.com</TableCell>
-              <TableCell>+91 9519293603</TableCell>
-              <TableCell>1200000</TableCell>
-              <TableCell>21</TableCell>
-              <TableCell>
-                <Button variant="contained" color="error">
-                  Remove
-                </Button>
-              </TableCell>
-            </TableRow>
+            {users.map((user) => (
+              <TableRow>
+                <TableCell>{user.id}</TableCell>
+                <TableCell>{user.name}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>{user.phone}</TableCell>
+                <TableCell>{user.salary}</TableCell>
+                <TableCell>{user.age}</TableCell>
+                <TableCell>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => removeEntry(user.id)}
+                  >
+                    Remove
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </Box>
