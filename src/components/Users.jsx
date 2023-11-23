@@ -35,7 +35,7 @@ const defaultObj = [
     id: 101,
     name: "Yashi",
     email: "y@gmail.com",
-    phone: +919369950857,
+    phone: 9369950857,
     salary: 1500000,
     age: 21,
   },
@@ -67,7 +67,7 @@ const Users = () => {
           </TableHead>
           <TableBody>
             {users.map((user) => (
-              <TableRow>
+              <TableRow key={user.id}>
                 <TableCell>{user.id}</TableCell>
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
